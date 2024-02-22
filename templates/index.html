@@ -1,0 +1,146 @@
+<!--DOCTYPE html
+<html lang="en">
+
+  
+<head>
+  <meta charset="UTF-8">
+  <title>CoronaBot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body >
+<form>
+  <input type="text" name="description">
+  <button type="submit" value="Predict"></button>
+</form>
+
+
+</body>
+</html-->
+
+
+<!DOCTYPE html>
+<style>
+
+
+.golden-btn + .golden-btn { margin-top: 1em; }
+
+.golden-btn {
+  display: inline-block;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: none;
+  border-radius: .3em;
+  height: 2.75em;
+  line-height: 2.5em;
+  text-transform: uppercase;
+  padding: 0 1em;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),
+              inset 0 -2px 5px 1px rgba(139,66,8,1),
+              inset 0 -1px 1px 3px rgba(250,227,133,1);
+  background-image: linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07);
+  border: 1px solid #a55d07;
+  color: rgb(120,50,5);
+  text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  background-size: 100% 100%;
+  background-position:center;
+}
+.golden-btn:focus,
+.golden-btn:hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23),
+                inset 0 -2px 5px 1px #b17d10,
+                inset 0 -1px 1px 3px rgba(250,227,133,1);
+  border: 1px solid rgba(165,93,7,.6);
+  color: rgba(120,50,5,.8);
+}
+.golden-btn:active {
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),
+              inset 0 -2px 5px 1px #b17d10,
+                inset 0 -1px 1px 3px rgba(250,227,133,1);
+}
+  body {
+            background-image: url('https://images.pexels.com/photos/3785932/pexels-photo-3785932.jpeg?cs=srgb&dl=pexels-miguel-%C3%A1-padri%C3%B1%C3%A1n-3785932.jpg&fm=jpg&_gl=1*10zjoly*_ga*OTU2MTEyOTUyLjE3MDg0NjEzMjQ.*_ga_8JE65Q40S6*MTcwODYxNTExMC4yLjEuMTcwODYxNTI1Ny4wLjAuMA..');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: flex-end; /* Alignement à droite */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Hauteur de l'écran */
+        }
+
+        .login {
+            width: 300px; /* Largeur du formulaire */
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1); /* Fond semi-transparent */
+            border-radius: 10px;
+            color: white;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 45px); /* Largeur de l'input moins les paddings */
+            padding: 20px;
+            border-radius: 0.5%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            font-family: 'Pacifico';
+            text-align: center;
+            margin-bottom: 20px;
+        }
+</style>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Movies Genre Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" width="70px;" height="70px;" name="question" placeholder="Enter the description of the movie " required="required" />
+
+        <button type="submit" class="golden-btn" style="font-size:1.3em;">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
